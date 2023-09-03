@@ -23,7 +23,7 @@ public class Server {
 				clientSocket = serverSocket.accept();
 				System.out.println("------------- 3 Llegada de un clientSocket -----------");
 				
-				File fileDestino = new File("D:/server/Java-Logo2.png");
+				File fileDestino = new File("C:/server/java-vilca.jpeg");
 				FileOutputStream fos = new FileOutputStream(fileDestino);
 				DataInputStream entrada = new DataInputStream(clientSocket.getInputStream());
 				
