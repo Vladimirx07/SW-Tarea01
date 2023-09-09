@@ -1,4 +1,4 @@
-package com.example.demo.socket.archivos;
+package com.example.demo.socket.archivos.Tarea;
 
 import java.io.DataInputStream;
 import java.io.File;
@@ -7,11 +7,11 @@ import java.io.IOException;
 import java.net.ServerSocket;
 import java.net.Socket;
 
-public class Server {
+public class Clientx {
 
 	private final Integer PORT = 13;
 	
-	public Server() {
+	public Clientx() {
 	
 		try {
 			Socket clientSocket;
@@ -23,7 +23,7 @@ public class Server {
 				clientSocket = serverSocket.accept();
 				System.out.println("------------- 3 Llegada de un clientSocket -----------");
 				
-				File fileDestino = new File("C:/server/Java-Vilca-2.jpeg");
+				File fileDestino = new File("C:/cliente/Java-Tarea-Vilca-2.jpeg");
 				FileOutputStream fos = new FileOutputStream(fileDestino);
 				DataInputStream entrada = new DataInputStream(clientSocket.getInputStream());
 				
@@ -46,7 +46,7 @@ public class Server {
 	}
 	
 	public static void main(String[] args) {
-		new Server();
+		new Clientx();
 	}
 	
 }

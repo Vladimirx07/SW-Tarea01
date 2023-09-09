@@ -1,33 +1,33 @@
-package com.example.demo.socket.mensaje;
+package com.example.demo.socket.archivos.Tarea;
 
-import java.io.BufferedReader;
+import java.io.DataOutputStream;
+import java.io.File;
+import java.io.FileInputStream;
 import java.io.IOException;
-import java.io.InputStreamReader;
-import java.io.PrintWriter;
 import java.net.Socket;
 import java.net.UnknownHostException;
 
-public class Client {
+public class Serverx {
 
 	private final Integer PORT = 13;
 	private final String IP = "localhost";
 	
-	public Client() {
+	public Serverx() {
 		try {
 			Socket clientSocket = new Socket(IP, PORT);
 			System.out.println("------------- 1 Iniciando Comunicación ---------------");
 			System.out.println("Inet Address : " + clientSocket.getInetAddress());
 			
-			//Flujos de comunicación
-			BufferedReader entrada = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()));
-			PrintWriter salida = new PrintWriter(clientSocket.getOutputStream(),true);
-		
+			File fileOrigen = new File("C:/server/Java-Tarea-Vilca.jpeg");
+			FileInputStream fis = new FileInputStream(fileOrigen);
+			DataOutputStream salida = new DataOutputStream(clientSocket.getOutputStream());
 			
-			salida.println("Ancestral");
-			
-			String precio = entrada.readLine();
-			System.out.println("El precio es => " + precio);
-			
+			int byteLeidos;
+			while ( (byteLeidos = fis.read())!= -1) {
+				salida.write(byteLeidos);
+			}
+			fis.close();
+			salida.close();
 			
 			System.out.println("------------- 2 Finalizando Comunicación -------------");
 			clientSocket.close();
@@ -40,9 +40,7 @@ public class Client {
 	}
 
 	public static void main(String[] args) {
-		new Client();
+		new Serverx();
 	}
 	
 }
-
-
